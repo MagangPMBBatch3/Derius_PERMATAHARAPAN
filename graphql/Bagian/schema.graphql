@@ -1,0 +1,37 @@
+type Bagian {
+    id: ID!
+    nama: String!
+    created_at: DateTime
+    updated_at: DateTime
+}
+
+input createBagianInput {
+    nama: String!
+}
+
+input UpdateBagianInput{
+    id: ID!
+    nama: String
+}
+
+extend type Query{
+    allBagian: [Bagian!]!
+    @all(model: "App\\Models\\Bagian\\Bagian")
+
+ bagian(id: ID! @eq(key: "id")): Bagian
+    @find(model: "App\\Models\\Bagian\\Bagian")
+
+    bagianByNama(nama: String! @where(operator: "like", key: "nama")): [Bagian!]!
+    @all(model: "App\\Models\\Bagian\\Bagian")
+}
+
+type Mutation {
+    createBagian(input: createBagianInput! @spread): Bagian
+    @create(model: "App\\Models\\Bagian\\Bagian")
+
+    updateBagian(input: UpdateBagianInput! @spread): Bagian
+    @update(model: "App\\Models\\Bagian\\Bagian")
+
+    deleteBagian(id: ID! @eq(key: "id")): Bagian
+    @delete(model: "App\\Models\\Bagian\\Bagian")
+}
