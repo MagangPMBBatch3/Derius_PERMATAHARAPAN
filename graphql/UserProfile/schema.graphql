@@ -1,0 +1,69 @@
+type UserProfile {
+    id: ID!
+    user_id: ID!
+    name_images: String!
+    org: String
+    element: String
+    font: String
+    begin_id: Int
+    level_id: Int
+    status_id: Int
+    created_at: DateTime
+    updated_at: DateTime
+    deleted_at: DateTime
+
+    user: User @belongsTo
+    beginn: Beginn @belongsTo
+    level: Level @belongsTo
+    status: Status @belongsTo
+}
+
+input CreateUserProfileInput {
+    user_id: ID!
+    name_images: String!
+    org: String
+    element: String
+    font: String
+    begin_id: Int
+    level_id: Int
+    status_id: Int
+}
+
+input UpdateUserProfileInput {
+    user_id: ID
+    name_images: String
+    org: String
+    element: String
+    font: String
+    begin_id: Int
+    level_id: Int
+    status_id: Int
+}
+
+extend type Query {
+    allUserProfiles: [UserProfile!] 
+        @all(model: "App\\Models\\UsersProfile\\UsersProfile")
+
+    userProfile(id: ID! @eq): UserProfile
+        @find(model: "App\\Models\\UsersProfile\\UsersProfile")
+}
+
+extend type Mutation {
+    createUserProfile(input: CreateUserProfileInput! @spread): UserProfile
+        @create(model: "App\\Models\\UsersProfile\\UsersProfile")
+
+    updateUserProfile(
+        id: ID! @eq, 
+        input: UpdateUserProfileInput! @spread
+    ): UserProfile
+        @update(model: "App\\Models\\UsersProfile\\UsersProfile")
+
+    deleteUserProfile(id: ID! @eq): UserProfile
+        @delete(model: "App\\Models\\UsersProfile\\UsersProfile")
+
+    restoreUserProfile(id: ID!): UserProfile
+        @field(resolver: "App\\GraphQL\\UsersProfile\\Mutations\\UserProfileMutation@restore")
+
+    forceDeleteUserProfile(id: ID!): UserProfile
+        @field(resolver: "App\\GraphQL\\UsersProfile\\Mutations\\UserProfileMutation@forceDelete")
+}

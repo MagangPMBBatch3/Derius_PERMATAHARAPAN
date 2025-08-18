@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -28,21 +28,22 @@ class User extends Authenticatable
         'password' => 'hashed',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'deleted_at' => 'datetime'
     ];
 
     // Relationships
     public function profile()
     {
-        return $this->hasOne(UsersProfile::class, 'user_id');
+        return $this->hasOne(\App\Models\UsersProfile\UsersProfile::class, 'user_id');
     }
 
     public function pesan()
     {
-        return $this->hasMany(Pesan::class, 'user_id');
+        return $this->hasMany(\App\Models\Pesan\Pesan::class, 'user_id');
     }
 
     public function sessions()
     {
-        return $this->hasMany(Session::class, 'user_id');
+        return $this->hasMany(\App\Models\Session\Session::class, 'user_id');
     }
 }

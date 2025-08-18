@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Aktivitas;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -38,6 +38,6 @@ class Aktivitas extends Model
     // Relationship with jam_kerja
     public function jamKerja()
     {
-        return $this->hasMany(JamKerja::class, 'aktivitas_id');
+        return $this->hasMany(\App\Models\JamKerja\JamKerja::class, 'aktivitas_id');
     }
 }

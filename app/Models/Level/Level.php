@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\level;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,6 +25,6 @@ class Level extends Model
     // Relationship with users_profile
     public function usersProfile()
     {
-        return $this->hasMany(UsersProfile::class, 'level_id');
+        return $this->hasMany(\App\Models\UsersProfile\UsersProfile::class, 'level_id');
     }
 }

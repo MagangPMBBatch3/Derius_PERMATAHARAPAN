@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\JamPerTanggal;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -32,11 +32,11 @@ class JamPerTanggal extends Model
     // Relationships
     public function usersProfile()
     {
-        return $this->belongsTo(UsersProfile::class, 'users_profile_id');
+        return $this->belongsTo(\App\Models\UsersProfile\UsersProfile::class, 'users_profile_id');
     }
 
     public function proyek()
     {
-        return $this->belongsTo(Proyek::class, 'proyek_id');
+        return $this->belongsTo(\App\Models\Proyek\Proyek::class, 'proyek_id');
     }
 }

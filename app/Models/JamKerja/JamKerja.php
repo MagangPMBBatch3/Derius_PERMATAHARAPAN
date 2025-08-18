@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\JamKerja;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -35,26 +35,26 @@ class JamKerja extends Model
     // Relationships
     public function usersProfile()
     {
-        return $this->belongsTo(UsersProfile::class, 'users_profile_id');
+        return $this->belongsTo(\App\Models\UsersProfile\UsersProfile::class, 'users_profile_id');
     }
 
     public function proyek()
     {
-        return $this->belongsTo(Proyek::class, 'proyek_id');
+        return $this->belongsTo(\App\Models\Proyek\Proyek::class, 'proyek_id');
     }
 
     public function aktivitas()
     {
-        return $this->belongsTo(Aktivitas::class, 'aktivitas_id');
+        return $this->belongsTo(\App\Models\Aktivitas\Aktivitas::class, 'aktivitas_id');
     }
 
     public function modeJamKerja()
     {
-        return $this->belongsTo(ModeJamKerja::class, 'mode_id');
+        return $this->belongsTo(\App\Models\ModeJamKerja\ModeJamKerja::class, 'mode_id');
     }
 
     public function statusJamKerja()
     {
-        return $this->belongsTo(StatusJamKerja::class, 'status_id');
+        return $this->belongsTo(\App\Models\StatusJamKerja\StatusJamKerja::class, 'status_id');
     }
 }

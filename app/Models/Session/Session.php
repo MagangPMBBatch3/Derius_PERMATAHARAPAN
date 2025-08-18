@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Session;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +28,6 @@ class Session extends Model
     // Relationship with user
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(\App\Models\User\User::class, 'user_id');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Bagian;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,6 +25,6 @@ class Bagian extends Model
     // Relationship with users_profile
     public function usersProfile()
     {
-        return $this->hasMany(UsersProfile::class, 'bagian_id');
+        return $this->hasMany(\App\Models\UsersProfile\UsersProfile::class, 'bagian_id');
     }
 }

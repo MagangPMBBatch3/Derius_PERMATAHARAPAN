@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\StatusJamKerja;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -24,6 +24,6 @@ class StatusJamKerja extends Model
     // Relationship with jam_kerja
     public function jamKerja()
     {
-        return $this->hasMany(JamKerja::class, 'status_id');
+        return $this->hasMany(\App\Models\JamKerja\JamKerja::class, 'status_id');
     }
 }
