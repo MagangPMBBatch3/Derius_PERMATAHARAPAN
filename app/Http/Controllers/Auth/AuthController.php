@@ -1,23 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\AuthController;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthController
+class AuthController extends Controller
 {
-    /**
-     * Show login form
-     */
     public function showLogin()
     {
         return view("auth.login");
     }
 
-    /**
-     * Handle login request
-     */
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -35,17 +30,15 @@ class AuthController
         ]);
     }
 
-    /**
-     * Show dashboard
-     */
     public function dashboard()
     {
         return view("dashboard.index");
     }
+        public function bagian()
+    {
+        return view("bagian.index");
+    }
 
-    /**
-     * Handle logout
-     */
     public function logout(Request $request)
     {
         Auth::logout();

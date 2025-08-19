@@ -1,5 +1,5 @@
-<x-layouts.app title="Login">
-    <form action="/login" method="POST" class="bg-white p-6 rounded shadow-md w-96">
+<x-layouts.auth title="Login">
+    <form action="{{ route('login.post') }}" method="POST" class="bg-white p-6 rounded shadow-md w-96">
         @csrf
         <h1 class="text-2xl font-bold mb-4 text-center">Login</h1>
 
@@ -19,8 +19,8 @@
             <input type="password" name="password" class="border w-full p-2 rounded" required>
         </div>
 
-        <button type="submit" class="bg-blue-500 text-white w-full p-2 rounded hover:bg-blue-600 transition">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white w-full p-2 rounded transition">
             Login
         </button>
     </form>
-</x-layouts.app>0
+</x-layouts.auth>
