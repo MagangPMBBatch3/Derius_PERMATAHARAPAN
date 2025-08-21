@@ -24,6 +24,12 @@
                         Bagian
                     </a>
                 </li>
+
+                   <li class="mb-2">
+                    <a href="{{ route('level') }}" class="block py-2 px-2 rounded {{ request()->routeIs('level') ? 'bg-blue-800 font-semibold' : 'hover:bg-blue-500' }}">
+                        Level
+                    </a>
+                </li>
                 <!-- Tambahkan menu lain di sini -->
                 <li>
                     <form action="{{ route('logout') }}" method="POST">

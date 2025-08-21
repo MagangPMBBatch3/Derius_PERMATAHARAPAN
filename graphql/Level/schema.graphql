@@ -17,29 +17,33 @@ input UpdateLevelInput {
 extend type Query {
     # Ambil semua Level (yang belum dihapus)
     allLevel: [Level!]!
-        @all(model: "App\\Models\\Level")
+        @all(model: "App\\Models\\Level\\Level")
 
+    # Ambil semua Level yang diarsipkan
+    allLevelArsip: [Level!]!
+        @field(resolver: "App\\GraphQL\\Level\\Queries\\LevelQuery@allArship")
+        
     # Cari level berdasarkan ID
-    level(id: ID! @eq(key: "id")): Level
-        @find(model: "App\\Models\\Level")
+    level(id: ID! @eq): Level
+        @find(model: "App\\Models\\Level\\Level")
 
     # Cari level berdasarkan nama (LIKE)
-    levelByNama(nama: String! @where(operator: "like", key: "nama")): [Level!]!
-        @all(model: "App\\Models\\Level")
+    levelByNama(nama: String! @where(operator: "like")): [Level!]!
+        @all(model: "App\\Models\\Level\\Level")
 }
 
 extend type Mutation {
     createLevel(input: CreateLevelInput! @spread): Level
-        @create(model: "App\\Models\\Level")
+        @create(model: "App\\Models\\Level\\Level")
 
     updateLevel(
-        id: ID! @eq(key: "id"),
+        id: ID! @eq,
         input: UpdateLevelInput! @spread
     ): Level
-        @update(model: "App\\Models\\Level")
+        @update(model: "App\\Models\\Level\\Level")
 
-    deleteLevel(id: ID! @eq(key: "id")): Level
-        @delete(model: "App\\Models\\Level")
+    deleteLevel(id: ID! @eq): Level
+        @delete(model: "App\\Models\\Level\\Level")
 
     restoreLevel(id: ID!): Level
         @field(resolver: "App\\GraphQL\\Level\\Mutations\\LevelMutation@restore")

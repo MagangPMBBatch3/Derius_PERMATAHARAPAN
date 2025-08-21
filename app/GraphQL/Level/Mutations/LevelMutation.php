@@ -2,7 +2,7 @@
 
 namespace App\GraphQL\Level\Mutations;
 
-use App\Models\Level;
+use App\Models\Level\Level;
 
 class LevelMutation
 {

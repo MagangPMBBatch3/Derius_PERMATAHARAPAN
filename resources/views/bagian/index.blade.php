@@ -98,8 +98,8 @@
                             <td class="p-2 border">${item.id}</td>
                             <td class="p-2 border">${item.nama}</td>
                             <td class="p-2 border flex gap-1">
-                                <button onclick="openEditModal(${item.id}, '${item.nama}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
-                                <button onclick="hapusBagian(${item.id})" class="bg-red-500 text-white px-2 py-1 rounded">Hapus</button>
+                                <button onclick="openEditModal(${item.id}, '${item.nama}')" class="bg-yellow-500 text-black px-2 py-1 rounded">Edit</button>
+                                <button onclick="hapusBagian(${item.id})" class="bg-red-500 text-black px-2 py-1 rounded">Hapus</button>
                             </td>
                         </tr>
                     `;
@@ -185,14 +185,13 @@
             }
 
             const mutation = `
-                mutation {
-                    updateBagian(id: ${id}, input: { nama: "${nama}" }) {
-                        id
-                        nama
-                    }
-                }
-            `;
-
+    mutation {
+        updateBagian(input: { id: ${id}, nama: "${nama}" }) {
+            id
+            nama
+        }
+    }
+`;
             try {
                 const response = await fetch('/graphql', {
                     method: 'POST',
