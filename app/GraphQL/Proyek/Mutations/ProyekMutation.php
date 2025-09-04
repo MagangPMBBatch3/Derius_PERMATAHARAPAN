@@ -31,7 +31,7 @@ class ProyekMutation
         $query = \App\Models\Proyek\Proyek::query();
         if (!empty($args['token'])) {
             $query->where('id', 'like', '%'.$args['token'].'%')
-                  ->orWhere('name', 'like', '%'.$args['token'].'%')
+                  ->orWhere('nama', 'like', '%'.$args['token'].'%')
                   ->orWhere('kode', 'like', '%'.$args['token'].'%');
         }
         return $query->get();

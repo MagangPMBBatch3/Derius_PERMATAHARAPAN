@@ -1,31 +1,24 @@
-// filepath: public/js/bagian/bagian-create.js
-
-function openAddModal() {
-    document.getElementById('modalAdd').classList.remove('hidden');
-}
-
-function closeAddModal() {
-    document.getElementById('modalAdd').classList.add('hidden');
-    document.getElementById('addName').value = '';
-    document.getElementById('errorAddName').textContent = '';
-}
-
-async function createBagian() {
+window.createBagian = async function() {
     const nama = document.getElementById('addName').value.trim();
-    
-    // Clear previous error
+
+    // Clear previous errors
     document.getElementById('errorAddName').textContent = '';
-    
+
+    // Validation
+    let hasError = false;
     if (!nama) {
-        document.getElementById('errorAddName').textContent = "Nama tidak boleh kosong";
-        return;
+        document.getElementById('errorAddName').textContent = 'Nama bagian tidak boleh kosong';
+        hasError = true;
     }
+
+    if (hasError) return;
 
     const mutation = `
         mutation {
             createBagian(input: { nama: "${nama}" }) {
                 id
                 nama
+                created_at
             }
         }
     `;
@@ -35,38 +28,25 @@ async function createBagian() {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                'X-CSRF-TOKEN': getCsrfToken()
             },
             body: JSON.stringify({ query: mutation })
         });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
         const result = await response.json();
 
         if (result.errors) {
-            throw new Error(result.errors[0].message);
-        }
-
-        // Success
-        closeAddModal();
-        
-        // Reload data - pastikan fungsi ini ada
-        if (typeof loadData === "function") {
-            loadData();
-        } else if (typeof fetchData === "function") {
-            fetchData();
+            const errorMessage = result.errors[0].message;
+            document.getElementById('errorAddName').textContent = errorMessage;
         } else {
-            // Refresh halaman jika tidak ada fungsi reload
-            window.location.reload();
+            closeAddModal();
+            loadBagianData();
         }
-        
-        alert('Data berhasil ditambahkan!');
-        
     } catch (error) {
-        console.error('Error creating bagian:', error);
-        document.getElementById('errorAddName').textContent = 'Gagal membuat bagian: ' + error.message;
+        document.getElementById('errorAddName').textContent = 'Terjadi kesalahan: ' + error.message;
     }
+}
+
+function getCsrfToken() {
+    const meta = document.querySelector('meta[name="csrf-token"]');
+    return meta ? meta.getAttribute('content') : '';
 }

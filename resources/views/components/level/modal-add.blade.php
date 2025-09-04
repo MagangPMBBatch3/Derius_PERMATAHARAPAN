@@ -11,13 +11,19 @@
                            maxlength="255" placeholder="Masukkan nama level...">
                     <span id="errorAddLevelNama" class="text-red-500 text-sm"></span>
                 </div>
-                <div class="flex justify-end space-x-2">
+                <div class="flex justify-end space-x-3">
                     <button type="button" onclick="closeAddLevelModal()"
-                            class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 transition">
+                            class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-gray-400 to-gray-500 text-white font-semibold rounded-lg shadow-md hover:from-gray-500 hover:to-gray-600 transform hover:scale-105 transition-all duration-200 ease-in-out border-0 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
                         Batal
                     </button>
                     <button type="submit"
-                            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+                            class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-200 ease-in-out border-0 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
                         Simpan
                     </button>
                 </div>

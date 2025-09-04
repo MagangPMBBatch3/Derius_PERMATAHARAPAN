@@ -1,11 +1,11 @@
 type UserProfile {
     id: ID!
     user_id: ID!
-    name_images: String!
-    org: String
-    element: String
-    font: String
-    begin_id: Int
+    nama_lengkap: String
+    nrp: String
+    alamat: String
+    foto: String
+    bagian_id: Int
     level_id: Int
     status_id: Int
     created_at: DateTime
@@ -13,29 +13,29 @@ type UserProfile {
     deleted_at: DateTime
 
     user: User @belongsTo
-    beginn: Beginn @belongsTo
+    bagian: Bagian @belongsTo
     level: Level @belongsTo
     status: Status @belongsTo
 }
 
 input CreateUserProfileInput {
     user_id: ID!
-    name_images: String!
-    org: String
-    element: String
-    font: String
-    begin_id: Int
+    nama_lengkap: String
+    nrp: String
+    alamat: String
+    foto: String
+    bagian_id: Int
     level_id: Int
     status_id: Int
 }
 
 input UpdateUserProfileInput {
     user_id: ID
-    name_images: String
-    org: String
-    element: String
-    font: String
-    begin_id: Int
+    nama_lengkap: String
+    nrp: String
+    alamat: String
+    foto: String
+    bagian_id: Int
     level_id: Int
     status_id: Int
 }
@@ -46,6 +46,9 @@ extend type Query {
 
     userProfile(id: ID! @eq): UserProfile
         @find(model: "App\\Models\\UsersProfile\\UsersProfile")
+        
+    userProfileByUserId(user_id: ID! @where(key: "user_id")): UserProfile
+        @first(model: "App\\Models\\UsersProfile\\UsersProfile")
 }
 
 extend type Mutation {

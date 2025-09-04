@@ -84,22 +84,34 @@ function renderLevelTable(levels, tableId, isActive) {
         if (isActive) {
             actions = `
                 <button onclick="openEditLevelModal(${item.id}, '${escapeHtml(item.nama)}')" 
-                        class="bg-yellow-500 text-white px-2 py-1 rounded mr-1 hover:bg-yellow-600 transition">
+                        class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-800 font-semibold rounded-lg shadow-md hover:from-yellow-500 hover:to-yellow-600 transform hover:scale-105 transition-all duration-200 ease-in-out border-0 focus:outline-none focus:ring-2 focus:ring-yellow-300 mr-2">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                    </svg>
                     Edit
                 </button>
                 <button onclick="archiveLevel(${item.id})" 
-                        class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition">
+                        class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-red-400 to-red-500 text-gray-800 font-semibold rounded-lg shadow-md hover:from-red-500 hover:to-red-600 transform hover:scale-105 transition-all duration-200 ease-in-out border-0 focus:outline-none focus:ring-2 focus:ring-red-300">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                    </svg>
                     Arsipkan
                 </button>
             `;
         } else {
             actions = `
                 <button onclick="restoreLevel(${item.id})" 
-                        class="bg-green-500 text-white px-2 py-1 rounded mr-1 hover:bg-green-600 transition">
+                        class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-green-400 to-green-500 text-white font-semibold rounded-lg shadow-md hover:from-green-500 hover:to-green-600 transform hover:scale-105 transition-all duration-200 ease-in-out border-0 focus:outline-none focus:ring-2 focus:ring-green-300 mr-2">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"></path>
+                    </svg>
                     Restore
                 </button>
                 <button onclick="forceDeleteLevel(${item.id})" 
-                        class="bg-red-700 text-white px-2 py-1 rounded hover:bg-red-800 transition">
+                        class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-red-600 to-red-700 text-gray-800 font-semibold rounded-lg shadow-md hover:from-red-700 hover:to-red-800 transform hover:scale-105 transition-all duration-200 ease-in-out border-0 focus:outline-none focus:ring-2 focus:ring-red-300">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                    </svg>
                     Hapus Permanen
                 </button>
             `;

@@ -1,9 +1,13 @@
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
+"A date string with format `Y-m-d`, e.g. `2018-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
 #import ./Bagian/schema.graphql
 #import ./Level/schema.graphql
-#import ./Status/schema.graphql
+#import ./Statuses/schema.graphql
 #import ./User/schema.graphql
 #import ./UserProfile/schema.graphql
 #import ./Proyek/schema.graphql
+#import ./ProyekUser/schema.graphql

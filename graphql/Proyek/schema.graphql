@@ -1,26 +1,23 @@
 type Proyek {
     id: ID!
-    kode: String!
+    kode: String
     nama: String!
-    tanggal: Date!
-    nama_client: String!
+    tanggal: Date
     created_at: DateTime!
     updated_at: DateTime!
     deleted_at: DateTime
 }
 
 input CreateProyekInput {
-    kode: String!
+    kode: String
     nama: String!
-    tanggal: Date!
-    nama_client: String!
+    tanggal: Date
 }
 
 input UpdateProyekInput {
     kode: String
     nama: String
     tanggal: Date
-    nama_client: String
 }
 
 extend type Query {
@@ -29,6 +26,12 @@ extend type Query {
 
     getProyeks(search: String): [Proyek!]!
         @field(resolver: "App\\GraphQL\\Proyek\\Queries\\ProyekQuery@getProyeks")
+
+    proyek(id: ID!): Proyek
+        @field(resolver: "App\\GraphQL\\Proyek\\Queries\\ProyekQuery@proyekById")
+
+    proyekByNama(nama: String!): [Proyek!]!
+        @field(resolver: "App\\GraphQL\\Proyek\\Queries\\ProyekQuery@proyekByNama")
 }
 
 extend type Mutation {

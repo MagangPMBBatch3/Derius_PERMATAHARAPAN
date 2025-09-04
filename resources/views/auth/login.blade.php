@@ -1,26 +1,33 @@
 <x-layouts.auth title="Login">
-    <form action="{{ route('login.post') }}" method="POST" class="bg-white p-6 rounded shadow-md w-96">
-        @csrf
-        <h1 class="text-2xl font-bold mb-4 text-center">Login</h1>
+    <div class="bg-gradient-to-br from-gray-800 to-black p-8 rounded-2xl shadow-2xl w-full max-w-md border border-blue-500">
+        <h1 class="text-3xl font-bold mb-6 text-center text-white">Login</h1>
 
-        @if ($errors->any())
-            <div class="bg-red-100 text-red-700 p-2 rounded mb-4">
-                {{ $errors->first() }}
+        <form action="{{ route('login.post') }}" method="POST" class="space-y-6">
+            @csrf
+
+            <div>
+                <label class="block text-blue-300 font-semibold mb-2">Email</label>
+                <input type="email" name="email" value="{{ old('email') }}" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors" placeholder="Masukkan email" required>
+                @error('email')
+                    <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span>
+                @enderror
             </div>
-        @endif
 
-        <div class="mb-4">
-            <label class="block mb-2">Email</label>
-            <input type="email" name="email" class="border w-full p-2 rounded" required>
+            <div>
+                <label class="block text-blue-300 font-semibold mb-2">Password</label>
+                <input type="password" name="password" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors" placeholder="Masukkan password" required>
+                @error('password')
+                    <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300">
+                Login
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-gray-400">Belum punya akun? <a href="{{ route('register') }}" class="text-blue-400 hover:text-blue-300 font-semibold">Daftar di sini</a></p>
         </div>
-
-        <div class="mb-4">
-            <label class="block mb-2">Password</label>
-            <input type="password" name="password" class="border w-full p-2 rounded" required>
-        </div>
-
-        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white w-full p-2 rounded transition">
-            Login
-        </button>
-    </form>
+    </div>
 </x-layouts.auth>

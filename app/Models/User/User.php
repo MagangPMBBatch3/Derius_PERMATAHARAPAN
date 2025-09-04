@@ -37,6 +37,11 @@ class User extends Authenticatable
         return $this->hasOne(\App\Models\UsersProfile\UsersProfile::class, 'user_id');
     }
 
+    public function usersProfile()
+    {
+        return $this->hasOne(\App\Models\UsersProfile\UsersProfile::class, 'user_id');
+    }
+
     public function pesan()
     {
         return $this->hasMany(\App\Models\Pesan\Pesan::class, 'user_id');

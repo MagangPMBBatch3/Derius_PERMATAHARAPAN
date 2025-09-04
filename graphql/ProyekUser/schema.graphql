@@ -1,0 +1,48 @@
+type ProyekUser {
+    id: ID!
+    users_profile_id: ID!
+    proyek_id: ID!
+    created_at: DateTime!
+    updated_at: DateTime!
+    deleted_at: DateTime
+    usersProfile: UsersProfile @belongsTo(relation: "usersProfile")
+    proyek: Proyek @belongsTo(relation: "proyek")
+}
+
+input CreateProyekUserInput {
+    users_profile_id: ID!
+    proyek_id: ID!
+}
+
+input UpdateProyekUserInput {
+    users_profile_id: ID
+    proyek_id: ID
+}
+
+extend type Query {
+    allProyekUsers: [ProyekUser!]!
+        @all(model: "App\\Models\\ProyekUser\\ProyekUser")
+
+    proyekUsersByUser(users_profile_id: ID!): [ProyekUser!]!
+        @field(resolver: "App\\GraphQL\\ProyekUser\\Queries\\ProyekUserQuery@proyekUsersByUser")
+}
+
+extend type Mutation {
+    createProyekUser(input: CreateProyekUserInput! @spread): ProyekUser
+        @create(model: "App\\Models\\ProyekUser\\ProyekUser")
+
+    updateProyekUser(
+        id: ID! @eq,
+        input: UpdateProyekUserInput! @spread
+    ): ProyekUser
+        @update(model: "App\\Models\\ProyekUser\\ProyekUser")
+
+    deleteProyekUser(id: ID! @eq): ProyekUser
+        @delete(model: "App\\Models\\ProyekUser\\ProyekUser")
+
+    restoreProyekUser(id: ID!): ProyekUser
+        @field(resolver: "App\\GraphQL\\ProyekUser\\Mutations\\ProyekUserMutation@restore")
+
+    forceDeleteProyekUser(id: ID!): ProyekUser
+        @field(resolver: "App\\GraphQL\\ProyekUser\\Mutations\\ProyekUserMutation@forceDelete")
+}

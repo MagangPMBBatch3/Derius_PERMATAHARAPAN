@@ -10,34 +10,30 @@ class ProyekQuery
     /**
      * Ambil semua proyek dengan filter opsional
      */
-    public function semuaProyek($_, array $args): Collection
+    public function getProyeks($_, array $args): Collection
     {
         $query = Proyek::query();
-        
+
         // Filter pencarian umum
-        if (!empty($args['cari'])) {
+        if (!empty($args['search'])) {
             $query->where(function($q) use ($args) {
-                $q->where('nama', 'like', '%'.$args['cari'].'%')
-                  ->orWhere('kode', 'like', '%'.$args['cari'].'%')
-                  ->orWhere('deskripsi', 'like', '%'.$args['cari'].'%');
+                $q->where('nama', 'like', '%'.$args['search'].'%')
+                  ->orWhere('kode', 'like', '%'.$args['search'].'%')
+                  ->orWhere('id', $args['search']);
             });
         }
-        
-        // Filter by tanggal
-        if (!empty($args['tanggal_mulai'])) {
-            $query->whereDate('tanggal_mulai', '>=', $args['tanggal_mulai']);
-        }
-        
-        if (!empty($args['tanggal_selesai'])) {
-            $query->whereDate('tanggal_selesai', '<=', $args['tanggal_selesai']);
-        }
-        
-        // Filter by status
-        if (!empty($args['status_id'])) {
-            $query->where('status_id', $args['status_id']);
-        }
-        
+
         return $query->orderBy('created_at', 'desc')->get();
+    }
+
+    /**
+     * Cari proyek berdasarkan nama
+     */
+    public function proyekByNama($_, array $args): Collection
+    {
+        return Proyek::where('nama', 'like', '%'.$args['nama'].'%')
+                     ->orderBy('created_at', 'desc')
+                     ->get();
     }
 
     /**
